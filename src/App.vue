@@ -7,7 +7,7 @@
           <section
               :key="index"
               class="hero"
-              style="background-image: url('public/panorama.jpeg')"
+              style="background-image: url('panorama.jpeg')"
           >
             <div class="overlay"></div>
             <div class="hero-content"><h1>BELLY LŌGE</h1></div>
@@ -145,7 +145,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="offer-img" :style="`background-image: url(public/` + index + `.jpeg);background-color:  #F5EBE9;`">
+              <div class="offer-img" :style="`background-image: url(` + index + `.jpeg);background-color:  #F5EBE9;`">
               </div>
             </div>
             <div class="offer-card" style="background-color:  #F5EBE9;">
@@ -467,15 +467,15 @@ body {
   transform: scale(1.10);
 }
 .prog-impact {
-  background-image: url('../public/impact.jpeg');
+  background-image: url('/impact.jpeg');
 }
 .prog-preco {
-  background-image: url('../public/preconception.jpeg');
+  background-image: url('/preconception.jpeg');
 }
 .prog-sport {
-  background-image: url('public/sportif.jpeg');}
+  background-image: url('/sportif.jpeg');}
 .prog-other {
-  background-image: url('../public/a-la-carte-old.jpeg');}
+  background-image: url('/a-la-carte.jpeg');}
 .overlay-card {
   position: absolute;
   inset: 0;
