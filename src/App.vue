@@ -7,7 +7,7 @@
           <section
               :key="index"
               class="hero"
-              style="background-image: url('panorama.jpeg')"
+              style="background-image: url('/panorama.jpeg')"
           >
             <div class="overlay"></div>
             <div class="hero-content"><h1>BELLY LŌGE</h1></div>
@@ -145,14 +145,14 @@
                   </ul>
                 </div>
               </div>
-              <div class="offer-img" :style="`background-image: url(` + index + `.jpeg);background-color:  #F5EBE9;`">
+              <div :class="'offer-img-' + index" :style="`background-image: url(/` + index + `.jpeg);`">
               </div>
             </div>
-            <div class="offer-card" style="background-color:  #F5EBE9;">
+            <div class="offer-card" style="background-color:  #F5EBE9; width: 80%">
               <div class="offer-content">
                 <h2 class="offer-title">Ce que comprend mes services:</h2>
 
-                <div class="offer-features-box">
+                <div class="offer-features-box" style="width: 80%">
                   <ul class="offer-features">
                     <li>Restauration de l’énergie</li>
                     <li>Diagnostic et correction des déséquilibres alimentaires et des déficits nutritionnels</li>
@@ -383,47 +383,13 @@ body {
   top: 40%;
   transform: translateY(-40%);
 }
-
-.scroll-bar {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: white;
-  margin-left: 5px;
-  margin-right: 5px;
-  opacity: 0.5;
-  transition: transform 0.3s, opacity 0.3s;
-  cursor: pointer;
-}
-
-.dot.active {
-  transform: scale(1.3);
-  opacity: 1;
-}
 .hero h1 {
   font-style: italic;
   font-family: fangsong;
   font-size: 60px;
   margin: 0;
 }
-.scroll-down {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 40px;
-  cursor: pointer;
-  animation: bounce 1.5s infinite;
-}
+
 @keyframes bounce {
   0%, 100% {
     transform: translate(-50%, 0);
@@ -487,11 +453,6 @@ body {
   z-index: 2;
 }
 
-/* LISTS */
-.styled-list {
-  list-style: none;
-  padding-left: 0;
-}
 .styled-list li {
   margin: 6px 0;
   padding-left: 20px;
@@ -504,14 +465,9 @@ body {
   color: #2b5d4d;
 }
 
-.program-full:hover{
-  cursor: pointer;
-  transform: scale(1.04);
-}
 /* BOXES */
 .bio,
-.testimonials,
-.program-full {
+.testimonials{
   transition: transform 0.3s, color 0.3s;
   background: white;
   margin: 20px 15%;
@@ -523,11 +479,6 @@ body {
   background-color: #FFF9F5;
   padding: 15px 30px;
 }
-.selected {
-  transform: scale(1.04);
-  background-color: #F5F8FA;
-  box-shadow: 4px 4px 4px 4px #F5F8FA;
-}
 button:hover{
   cursor: pointer;
 }
@@ -538,37 +489,6 @@ button {
   border: none;
   cursor: pointer;
   font-size: 14px;
-}
-.btn-primary {
-  background: #2b5d4d;
-  color: white;
-}
-.btn-primary:hover {
-  background: #244c3e;
-}
-.btn-secondary {
-  margin-left: 10px;
-  background: #eee;
-}
-.btn-secondary:hover {
-  background: #ddd;
-}
-.btn-back:hover{
-  cursor:pointer;
-}
-.btn-back {
-  margin-bottom: 20px;
-  margin-top: 3%;
-  margin-left: 5%;
-}
-.price {
-  color: #2b5d4d;
-  font-weight: bold;
-}
-.oldprice {
-  text-decoration: line-through;
-  margin-left: 8px;
-  color: #777;
 }
 blockquote {
   margin: 12px 0;
@@ -618,37 +538,43 @@ cite {
   color: black;             /* hover color */
   transform: scale(1.2);    /* small zoom on hover */
 }
-.fade-slide-enter-active,
-.fade-slide-leave-active {
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-.fade-slide-enter-from {
-  opacity: 0;
-  transform: translateY(20px);
-}
-.fade-slide-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-.fade-slide-leave-from {
-  opacity: 1;
-  transform: translateY(0);
-}
-.fade-slide-leave-to {
-  opacity: 0;
-  transform: translateY(-20px);
-}
 
 
-/* Features */
 .offer-content {
   width: 120%
 }
 
-.offer-img{
-  justify-content: end;
-  width: 100%;
-  background-position: right 35% top 65%;
+.offer-img-impact {
+  width: 70%;
+  height: 500px; /* or your preferred block height */
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* fills the entire div exactly */
+  background-position: right center; /* 👈 align image fully to the right */
+  background-color: #F5EBE9;
+}
+.offer-img-preconception {
+  width: 60%;
+  height: 500px; /* or your preferred block height */
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* fills the entire div exactly */
+  background-position: right center; /* 👈 align image fully to the right */
+  background-color: #F5EBE9;
+}
+.offer-img-sportif {
+  width: 60%;
+  height: 500px; /* or your preferred block height */
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* fills the entire div exactly */
+  background-position: right center; /* 👈 align image fully to the right */
+  background-color: #F5EBE9;
+}
+.offer-img-a-la-carte {
+  width: 65%;
+  height: 500px; /* or your preferred block height */
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* fills the entire div exactly */
+  background-position: right center; /* 👈 align image fully to the right */
+  background-color: #F5EBE9;
 }
 
 .offers-section {
@@ -658,7 +584,6 @@ cite {
   justify-content: center;
   align-items: center;
   overflow-y: auto;
-  padding-left: 10%;
   padding-top: 10px;
   color: white;
 }
@@ -670,34 +595,20 @@ cite {
   max-width: 1200px;
   width: 100%;
   overflow: hidden;
+  padding-top: 10px;
+  padding-right: 10%;
 }
 
 /* Card */
 .offer-card {
-  display:inline-flex;
+  display: flex;
+  justify-content: center;
   border: 1px solid lightgray;
   border-radius: 6px;
   font-weight: bold;
   margin-bottom: 100px;
 }
 
-@media (max-width: 765px) {
-  .offer-card {
-    display: inline;
-  }
-
-  .offer-content {
-    width: 100%
-  }
-
-  .offer-img{
-    justify-content: end;
-    width: 100%;
-    height: 300px;
-    background-position: right 35% bottom 45%;
-  }
-
-}
 
 .offer-card:hover {
   transform: translateY(-6px);
@@ -725,6 +636,9 @@ cite {
   color: #333;
   margin-bottom: 10px;
   justify-content: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word; /* optional, aggressive breaking */
 }
 
 /* Price */
@@ -812,6 +726,116 @@ cite {
 
 .back-button:hover {
   color: #4a4848;
+}
+
+@media (min-width: 800px) {
+  .offers-section {
+    padding-left: 10%;
+  }
+}
+
+@media (max-width: 650px) {
+  .offers-section {
+    width: 90%;
+  }
+}
+
+@media (max-width: 400px) {
+  .offer-card {
+    margin-left: 5%;
+  }
+}
+
+@media (max-width: 800px) {
+  .offer-card {
+    width: 80%;
+  }
+  .offer-card:nth-child(1) {
+    display: grid;
+  }
+  .offer-card:nth-child(2) {
+    display: inline;
+  }
+  .offer-card:nth-child(3) {
+    display: inline;
+  }
+  .offer-card:nth-child(4) {
+    display: inline;
+  }
+
+  .offer-img-impact {
+    width: 100%;
+    height: 350px; /* or your preferred block height */
+    background-repeat: no-repeat;
+    background-size: 100% 100%; /* fills the entire div exactly */
+    background-position: center; /* 👈 align image fully to the right */
+    background-color: #F5EBE9;
+  }
+  .offer-img-preconception {
+    width: 100%;
+    height: 350px; /* or your preferred block height */
+    background-repeat: no-repeat;
+    background-size: 100% 100%; /* fills the entire div exactly */
+    background-position: center; /* 👈 align image fully to the right */
+    background-color: #F5EBE9;
+  }
+  .offer-img-sportif {
+    width: 100%;
+    height: 350px; /* or your preferred block height */
+    background-repeat: no-repeat;
+    background-size: 100% 100%; /* fills the entire div exactly */
+    background-position: center; /* 👈 align image fully to the right */
+    background-color: #F5EBE9;
+  }
+  .offer-img-a-la-carte {
+    width: 100%;
+    height: 350px; /* or your preferred block height */
+    background-repeat: no-repeat;
+    background-size: 100% 100%; /* fills the entire div exactly */
+    background-position: center; /* 👈 align image fully to the right */
+    background-color: #F5EBE9;
+  }
+
+  .offer-content {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 765px) {
+  .bio,
+  .testimonials {
+    margin: 20px 5%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+  .offer-card {
+    margin-left: 25%;
+    width: 370px;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 600px) {
+  .offer-card {
+    margin-left: 25%;
+    width: 370px;
+  }
+}
+
+@media (max-width: 550px) {
+  .offer-card {
+    margin-left: 20%;
+  }
+
+  .offer-title {
+    width: 90%;
+  }
+
+  .offer-tagline {
+    width: 90%;
+    padding-left: 5%;
+  }
 }
 
 </style>
