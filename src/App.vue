@@ -837,5 +837,4 @@ cite {
     padding-left: 5%;
   }
 }
-
 </style>
