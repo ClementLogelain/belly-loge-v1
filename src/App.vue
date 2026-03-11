@@ -25,7 +25,7 @@
                 <div class="overlay-card"></div>
                 <div class="meta">
                   <strong>Impact</strong>
-                  <div>3 mois · 6 séances<br />250€</div>
+                  <div>3 mois · 6 séances<br />299€</div>
                 </div>
               </div>
               <div
@@ -45,7 +45,7 @@
                 <div class="overlay-card"></div>
                 <div class="meta">
                   <strong>Sportif</strong>
-                  <div>3 mois · 6 séances<br />250€</div>
+                  <div>3 mois · 6 séances<br />299€</div>
                 </div>
               </div>
               <div
@@ -55,7 +55,7 @@
                 <div class="overlay-card"></div>
                 <div class="meta">
                   <strong>À la demande</strong>
-                  <div>1 séance<br />50€</div>
+                  <div>1 séance<br />55€</div>
                 </div>
               </div>
             </div>
@@ -115,6 +115,7 @@
               </blockquote>
               <blockquote style="margin-top: 30px;">
                 “On peut dire que je m’y perdais complètement entre tous ces compléments, les conseils contradictoires, etc. Merci d’avoir su m’expliquer simplement ce qui était pertinent pour moi, et ce qui ne l’était pas. On avance bien aussi dans la prise de muscle + 1,5k tout en ayant l’air plus sec! Merci Marine!”<br />
+                <cite>— Raphaël M.</cite>
               </blockquote>
             </div>
           </div>
@@ -135,13 +136,14 @@
                 <div class="offer-price">
                   <span class="current-price">{{ offer.price }}</span>
                   <span v-if="offer.old" class="old-price">${{ offer.old }}</span>
+                  <div v-if="offer.price_info" class="current-price-info">{{ offer.price_info }}</div>
                 </div>
 
                 <p class="offer-tagline">{{ offer.tagline }}</p>
 
                 <div class="offer-features-box">
                   <ul class="offer-features">
-                    <li v-for="(feature, i) in offer.items" :key="i" style="width: 90%">{{ feature }}</li>
+                    <li v-for="(feature, i) in offer.items" :key="i" style="width: 90%" v-html="feature"></li>
                   </ul>
                 </div>
               </div>
@@ -245,10 +247,11 @@ const programs = reactive({
     old: "280€",
     tagline: "3 mois · 6 séances — équilibre, santé & énergie",
     items: [
-      "Questionnaire de rencontre",
+      "Questionnaire de Pré-rencontre",
       "Plan structuré sur mesure pour atteindre les objectifs",
       "Mise en place de nouvelles habitudes saines et durables",
-      "Ebook EQUILIBRE avec les informations essentielles et recettes",
+      "Ebook impact avec les informations essentielles et recettes",
+        "Échange illimité entre les séances",
       "Conseils à garder pour la vie",
     ],
   },
@@ -261,6 +264,7 @@ const programs = reactive({
       "Questionnaire de pré-rencontre",
       "Mise en place de nouvelles habitudes saines et durables",
       "Ebook avec les informations importantes et recettes",
+      "Échange illimité entre les séances",
       "Des conseils pour chacun des parents qui couvrent les différentes phases (préconception, grossesse, post-partum)",
     ],
   },
@@ -274,12 +278,14 @@ const programs = reactive({
       "Plan structuré sur mesure pour atteindre les objectifs",
       "Mise en place de nouvelles habitudes saines et durables",
       "Ebook du sportif avec les informations essentielles et recettes",
+      "Échange illimité entre les séances",
       "Des conseils adaptés en fonction du type d’activité, de la fréquence et des objectifs",
     ],
   },
   "a-la-carte": {
     title: "À la demande",
-    price: "Sur demande",
+    price: "55€",
+    price_info: "1 séance - sur mesure",
     tagline: "Première rencontre 45min 80€\n" +
         "Séance de suivis 30min 40€",
     items: [
@@ -402,7 +408,6 @@ body {
 .container {
   width: 100%;
   margin: auto;
-  font-family: fantasy;
 }
 
 /* PROGRAMS */
@@ -644,13 +649,19 @@ cite {
 /* Price */
 .offer-price {
   padding-left: 10%;
-  margin-bottom: 16px;
 }
 
 .current-price {
   font-size: 32px;
   font-weight: 800;
   color: #000000;
+}
+
+.current-price-info {
+  font-size: 32px;
+  font-weight: 800;
+  color: #000000;
+  margin-top: 10px;
 }
 
 .old-price {
