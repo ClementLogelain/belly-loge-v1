@@ -1,265 +1,191 @@
 <template>
-  <div style="height: 100vh; width: 100%;">
-    <transition name="fade-slide" mode="out-in">
-      <section v-if="page === 'home'" key="home" class="content-home">
-        <!-- HERO IMAGE -->
-        <div class="hero-wrapper" ref="wrapper">
-          <section
-              :key="index"
-              class="hero"
-              style="background-image: url('/panorama.jpeg')"
-          >
-            <div class="overlay"></div>
-            <div class="hero-content"><h1>BELLY LŌGE</h1></div>
-          </section>
+  <div class="app">
+    <transition name="fade-slide" mode="out-in" @after-enter="onPageEntered">
+
+      <!-- HOME PAGE -->
+      <section v-if="page === 'home'" key="home" class="home-page">
+
+        <!-- Hero -->
+        <div class="hero" style="background-image: url('/panorama.jpeg')">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <h1>BELLY LŌGE</h1>
+            <p class="hero-tagline">Parce que la santé, c'est notre liberté.</p>
+            <a href="https://calendly.com/bellyloge/30min" target="_blank" class="hero-cta">Prendre rendez-vous</a>
+          </div>
         </div>
 
-        <div ref="contentSection" class="container" style="margin-top: 100px">
-          <div class="container">
-            <!-- Programmes -->
-            <div class="programs-strip">
-              <div
-                  class="prog-card prog-impact"
-                  @click="goToProgram('impact')"
-              >
-                <div class="overlay-card"></div>
-                <div class="meta">
-                  <strong>Impact</strong>
-                  <div>3 mois · 6 séances<br />299€</div>
-                </div>
-              </div>
-              <div
-                  class="prog-card prog-preco"
-                  @click="goToProgram('preconception')"
-              >
-                <div class="overlay-card"></div>
-                <div class="meta">
-                  <strong>Préconception & Grossesse</strong>
-                  <div>Sur-mesure</div>
-                </div>
-              </div>
-              <div
-                  class="prog-card prog-sport"
-                  @click="goToProgram('sportif')"
-              >
-                <div class="overlay-card"></div>
-                <div class="meta">
-                  <strong>Sportif</strong>
-                  <div>3 mois · 6 séances<br />299€</div>
-                </div>
-              </div>
-              <div
-                  class="prog-card prog-other"
-                  @click="goToProgram('a-la-carte')"
-              >
-                <div class="overlay-card"></div>
-                <div class="meta">
-                  <strong>À la demande</strong>
-                  <div>1 séance<br />55€</div>
-                </div>
+        <!-- Programmes -->
+        <div class="programs-section">
+          <div class="programs-grid">
+            <div class="prog-card prog-impact" @click="goToProgram('impact')">
+              <div class="prog-overlay"></div>
+              <div class="prog-meta">
+                <strong>Impact</strong>
+                <span>3 mois · 6 séances · 299€</span>
               </div>
             </div>
-
-            <!-- Bio -->
-            <div class="bio">
-              <h2>Bienvenue, je suis Marine – Nutritionniste</h2>
-              <p>
-                Très jeune, j’ai commencé à chercher des moyens d’agir pour préserver sa santé et celle de ses proches, sans pour autant renoncer au plaisir ou à la liberté.
-              </p>
-              <p>
-                Cette quête a éveillé en moi une grande curiosité, une profonde envie d’en apprendre plus, de comprendre le fonctionnement du corps humain… et surtout d’accompagner les autres à faire des choix éclairés pour eux-mêmes.
-              </p>
-              <p>
-                C’est ainsi qu’est née ma vocation : guider chacun vers une alimentation plus consciente, plus respectueuse du corps, de la santé… et de la nature.
-                Je ne propose ni de régime strict ni règles rigides, mais un accompagnement sur mesure, en phase avec votre histoire, vos besoins et vos objectifs.
-              </p>
-              <p>
-                Mon approche est simple et humaine : vous aider, à votre rythme, par de petites actions, à adopter des habitudes durables qui font du bien aussi bien au corps qu’à l’esprit.
-              </p>
-              <p>
-                Que vous cherchiez à retrouver un équilibre, à mieux comprendre ce que vous mettez dans votre assiette ou à atteindre un objectif précis en donnant au corps ce dont il a vraiment besoin, je suis là pour vous guider avec bienveillance et expertise.
-              </p>
-              <p>
-                Parce que la santé, c’est notre liberté. Et celle-ci est entre vos mains.
-              </p>
-              <div>
-                C’est avec mon background en nutrithérapie, et mes spécialisations en accompagnement de préconception, de la femme enceinte et du sportif que je peux vous proposer une approche simple et réaliste, pour vous aider, à votre rythme, par de petites actions, à adopter des habitudes durables qui font du bien autant au corps qu’à l’esprit.
+            <div class="prog-card prog-preco" @click="goToProgram('preconception')">
+              <div class="prog-overlay"></div>
+              <div class="prog-meta">
+                <strong>Préconception & Grossesse</strong>
+                <span>Sur-mesure</span>
               </div>
-              <!--<h4 style="padding-top: 15px;">Mon Parcours :</h4>
-              <ul class="styled-list">
-                <li>CFNA Nutrithérapie — 2021-2022</li>
-                <li>2024 — Chi Nei Tsang</li>
-                <li>2024 — Precision Nutrition</li>
-                <li>2025 — Nutrition préconception et grossesse</li>
-              </ul>-->
             </div>
-
-            <!-- Témoignages -->
-            <div class="testimonials">
-              <h3>TÉMOIGNAGES</h3>
-              <blockquote>
-                “On voulait mettre toutes les chances de notre côté avant de concevoir notre bébé, et on a bien fait de venir voir Marine. Elle nous a aidés à mieux comprendre l’impact de l’alimentation et de l’environnement sur la fertilité, mais aussi sur la santé future de notre enfant. On a changé beaucoup de choses, en douceur, et aujourd’hui on se sent vraiment prêts. Merci pour ton écoute et ton accompagnement très humain.”<br />
-                <cite>— Hélène et Jérem</cite>
-              </blockquote>
-              <blockquote style="margin-top: 30px;">
-                “Grâce au suivi de Marine, j’ai enfin trouvé un équilibre alimentaire qui me correspond vraiment. J’ai gagné en énergie, j’ai perdu de la masse grasse sans sacrifier mes performances, et surtout, je récupère beaucoup mieux. Elle a su adapter ses conseils à ma charge d’entraînement et à mes objectifs. Je recommande à 100 %.”<br />
-                <cite>— Clément L.</cite>
-              </blockquote>
-              <blockquote style="margin-top: 30px;">
-                “Ce que je retiens de ce suivi, c’est bien plus qu’un changement physique. J’ai appris à écouter mon corps, à comprendre mes besoins, et à faire la paix avec mon alimentation. Marine m’a donné des clés concrètes, sans jamais me faire culpabiliser. Aujourd’hui, je me sens beaucoup plus sereine, dans mon assiette comme dans ma tête.”<br />
-                <cite>— Julie T.</cite>
-              </blockquote>
-              <blockquote style="margin-top: 30px;">
-                “Pendant ma grossesse, je voulais être sûre de bien faire, sans tomber dans l’excès. J’ai adapté mon alimentation, mieux choisi mes compléments, et compris l’impact de tout cela sur mon bébé… et même sur l’accouchement !! Un vrai soulagement de se sentir accompagnée avec bienveillance.”<br />
-                <cite>— Sophia L.</cite>
-              </blockquote>
-              <blockquote style="margin-top: 30px;">
-                “On peut dire que je m’y perdais complètement entre tous ces compléments, les conseils contradictoires, etc. Merci d’avoir su m’expliquer simplement ce qui était pertinent pour moi, et ce qui ne l’était pas. On avance bien aussi dans la prise de muscle + 1,5k tout en ayant l’air plus sec! Merci Marine!”<br />
-                <cite>— Raphaël M.</cite>
-              </blockquote>
+            <div class="prog-card prog-sport" @click="goToProgram('sportif')">
+              <div class="prog-overlay"></div>
+              <div class="prog-meta">
+                <strong>Sportif</strong>
+                <span>3 mois · 6 séances · 299€</span>
+              </div>
+            </div>
+            <div class="prog-card prog-other" @click="goToProgram('a-la-carte')">
+              <div class="prog-overlay"></div>
+              <div class="prog-meta">
+                <strong>À la demande</strong>
+                <span>1 séance · 55€</span>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Biographie -->
+        <div class="content-section">
+          <div class="card">
+            <h2>Bienvenue, je suis Marine – Nutritionniste</h2>
+            <p>Très jeune, j'ai commencé à chercher des moyens d'agir pour préserver sa santé et celle de ses proches, sans pour autant renoncer au plaisir ou à la liberté.</p>
+            <p>Cette quête a éveillé en moi une grande curiosité, une profonde envie d'en apprendre plus, de comprendre le fonctionnement du corps humain… et surtout d'accompagner les autres à faire des choix éclairés pour eux-mêmes.</p>
+            <p>C'est ainsi qu'est née ma vocation : guider chacun vers une alimentation plus consciente, plus respectueuse du corps, de la santé… et de la nature. Je ne propose ni de régime strict ni règles rigides, mais un accompagnement sur mesure, en phase avec votre histoire, vos besoins et vos objectifs.</p>
+            <p>Mon approche est simple et humaine : vous aider, à votre rythme, par de petites actions, à adopter des habitudes durables qui font du bien aussi bien au corps qu'à l'esprit.</p>
+            <p>Que vous cherchiez à retrouver un équilibre, à mieux comprendre ce que vous mettez dans votre assiette ou à atteindre un objectif précis en donnant au corps ce dont il a vraiment besoin, je suis là pour vous guider avec bienveillance et expertise.</p>
+            <p>Parce que la santé, c'est notre liberté. Et celle-ci est entre vos mains.</p>
+            <p>C'est avec mon background en nutrithérapie, et mes spécialisations en accompagnement de préconception, de la femme enceinte et du sportif que je peux vous proposer une approche simple et réaliste, pour vous aider, à votre rythme, par de petites actions, à adopter des habitudes durables qui font du bien autant au corps qu'à l'esprit.</p>
+          </div>
+        </div>
+
+        <!-- Témoignages -->
+        <div class="content-section">
+          <div class="card">
+            <h3 class="section-label">TÉMOIGNAGES</h3>
+            <blockquote v-for="(t, i) in testimonials" :key="i">
+              "{{ t.quote }}"
+              <cite>— {{ t.author }}</cite>
+            </blockquote>
+          </div>
+        </div>
+
       </section>
 
-      <!-- PAGE 2 -->
-
-
-      <div v-else style="background: linear-gradient(135deg, #f9fafc, #eef1f6); width:100%">
+      <!-- DETAILS PAGE -->
+      <div v-else key="details" class="details-page">
         <button class="back-button" @click="goHome">← Retour</button>
-        <section class="offers-section">
-          <div class="offers-container">
-            <div class="offer-card" v-for="(offer, index) in programs" :key="index">
-              <div class="offer-content">
-                <h2 class="offer-title">{{ offer.title }}</h2>
 
-                <div class="offer-price">
-                  <span class="current-price">{{ offer.price }}</span>
-                  <span v-if="offer.old" class="old-price">${{ offer.old }}</span>
-                  <div v-if="offer.price_info" class="current-price-info">{{ offer.price_info }}</div>
-                </div>
-
-                <p class="offer-tagline">{{ offer.tagline }}</p>
-                <p class="offer-tagline" v-if="offer.taglineExtra">{{ offer.taglineExtra }}</p>
-
-                <div class="offer-features-box">
-                  <ul class="offer-features">
-                    <li v-for="(feature, i) in offer.items" :key="i" style="width: 90%" v-html="feature"></li>
-                  </ul>
-                </div>
-              </div>
-              <div :class="'offer-img-' + index" :style="`background-image: url(/` + index + `.jpeg);`">
-              </div>
-            </div>
-            <div class="offer-card" style="background-color:  #F5EBE9; width: 80%">
-              <div class="offer-content">
-                <h2 class="offer-title">Ce que comprend mes services:</h2>
-
-                <div class="offer-features-box" style="width: 80%">
-                  <ul class="offer-features">
-                    <li>Restauration de l’énergie</li>
-                    <li>Diagnostic et correction des déséquilibres alimentaires et des déficits nutritionnels</li>
-                    <li>Renforcement du système immunitaire</li>
-                    <li>Alimentation anti-inflammatoire, anti-toxique</li>
-                    <li>Protocoles d’assainissement de l’environnement, coscientisation des polluants</li>
-                    <li>Outils de gestion du stress</li>
-                    <li>Optimisation du sommeil</li>
-                    <li>Promotion d’un environnement sain comprenant le mouvement</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-
-      <!--<section v-else style="padding-bottom: 20px;" class="content">
-        <div class="container">
-          <button class="btn-back" @click="goHome">← Retour</button>
-
-          <div style="margin-left: 15%;">
-            <h2>ACCOMPAGNEMENTS</h2>
-            <div>J’ai développé un programme de nutrition sur mesure.</div>
-          </div>
-
+        <div class="offers-list">
           <div
-              class="program-full"
-              v-for="(p, key) in programs"
-              :key="key"
-              :class="{ selected: selected === key }"
-              @click="selectProgram(key)"
-              style="display: inline-flex; width: 70%;"
+            v-for="(offer, key) in programs"
+            :key="key"
+            :id="`offer-${key}`"
+            class="offer-card"
           >
-            <div style="width: 70%; padding: 30px 10% 30px 5%;">
-              <h3>
-                {{ p.title }}
-                <span class="price">{{ p.price }}</span>
-                <span v-if="p.old" class="oldprice">{{ p.old }}</span>
-              </h3>
-              <p v-if="p.tagline"><em>{{ p.tagline }}</em></p>
-
-              <ul class="styled-list">
-                <li v-for="item in p.items" :key="item">{{ item }}</li>
-              </ul>
-
-              <div class="actions">
-                <a :href="mailtoLink"><button class="btn-primary">Contact</button></a>
+            <div class="offer-body">
+              <h2 class="offer-title">{{ offer.title }}</h2>
+              <div class="offer-price">
+                <span class="price-main">{{ offer.price }}</span>
+                <span v-if="offer.price_info" class="price-sub">{{ offer.price_info }}</span>
               </div>
+              <p class="offer-tagline">{{ offer.tagline }}</p>
+              <p v-if="offer.taglineExtra" class="offer-tagline">{{ offer.taglineExtra }}</p>
+              <ul class="offer-features">
+                <li v-for="(item, i) in offer.items" :key="i" v-html="item"></li>
+              </ul>
+              <a href="https://calendly.com/bellyloge/30min" target="_blank" class="offer-cta">Réserver ce programme</a>
             </div>
-            <div
-                style="width: 50%; background-size: 100%; background-repeat: no-repeat;"
-                :style="{ backgroundImage: `url('/` + key + `.jpeg')` }"
-            >
+            <div class="offer-img" :style="`background-image: url('/${key}.jpeg')`"></div>
+          </div>
+
+          <!-- Services inclus -->
+          <div class="offer-card services-card">
+            <div class="offer-body">
+              <h2 class="offer-title">Ce que comprend mes services :</h2>
+              <ul class="offer-features">
+                <li>Restauration de l'énergie</li>
+                <li>Diagnostic et correction des déséquilibres alimentaires et des déficits nutritionnels</li>
+                <li>Renforcement du système immunitaire</li>
+                <li>Alimentation anti-inflammatoire, anti-toxique</li>
+                <li>Protocoles d'assainissement de l'environnement, coscientisation des polluants</li>
+                <li>Outils de gestion du stress</li>
+                <li>Optimisation du sommeil</li>
+                <li>Promotion d'un environnement sain comprenant le mouvement</li>
+              </ul>
             </div>
           </div>
         </div>
-      </section>-->
+      </div>
+
     </transition>
-    <!-- Contact -->
-    <div class="contact">
+
+    <!-- Footer contact -->
+    <footer class="contact">
       <h3 class="contact-title">CONTACT</h3>
-      <div class="contact-list">
-        <a href="https://instagram.com/Belly.Loge" target="_blank">
+      <div class="contact-links">
+        <a href="https://instagram.com/Belly.Loge" target="_blank" aria-label="Instagram">
           <i class="fa-brands fa-instagram"></i>
         </a>
-        <a href="tel:+32478252176" style="margin: 0 50px;">
+        <a href="tel:+32478252176" aria-label="Téléphone">
           <i class="fa-solid fa-phone"></i>
         </a>
-        <a :href="mailtoLink" target="_blank">
+        <a :href="mailtoLink" target="_blank" aria-label="Email">
           <i class="fa-solid fa-envelope"></i>
         </a>
       </div>
-    </div>
+    </footer>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted, watch, nextTick } from "vue";
+import { ref, reactive } from "vue";
 
+// ── Navigation ────────────────────────────────────────────────────
 const page = ref("home");
 const selected = ref(null);
-const contentSection = ref(null);
+const mailtoLink = "mailto:lemensmarine12@gmail.com?subject=Demande%20d%27infos%20-%20Belly%20LŌGE";
 
+function goToProgram(key) {
+  selected.value = key;
+  page.value = "details";
+}
+
+function goHome() {
+  page.value = "home";
+}
+
+function onPageEntered() {
+  if (page.value === "details" && selected.value) {
+    document.getElementById(`offer-${selected.value}`)?.scrollIntoView({ behavior: "auto", block: "start" });
+  } else {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+}
+
+// ── Data ──────────────────────────────────────────────────────────
 const programs = reactive({
   impact: {
     title: "Programme IMPACT",
     price: "299€",
     tagline: "3 mois · 6 séances — équilibre, santé & énergie",
     items: [
-      "Questionnaire de Pré-rencontre",
+      "Questionnaire de pré-rencontre",
       "Plan structuré sur mesure pour atteindre les objectifs",
       "Mise en place de nouvelles habitudes saines et durables",
       "Ebook impact avec les informations essentielles et recettes",
-        "Échange illimité entre les séances",
+      "Échange illimité entre les séances",
       "Conseils à garder pour la vie",
     ],
   },
   preconception: {
     title: "Programme PRÉCONCEPTION ET GROSSESSE",
     price: "Sur-mesure",
-    tagline:
-        "Accompagnement pour préconception, grossesse et post-partum",
+    tagline: "Accompagnement pour préconception, grossesse et post-partum",
     items: [
       "Questionnaire de pré-rencontre",
       "Mise en place de nouvelles habitudes saines et durables",
@@ -271,14 +197,14 @@ const programs = reactive({
   sportif: {
     title: "Programme SPORTIF",
     price: "299€",
-    tagline: "3 mois · 6 séances — adapté à l’entraînement",
+    tagline: "3 mois · 6 séances — adapté à l'entraînement",
     items: [
       "Questionnaire de pré-rencontre",
       "Plan structuré sur mesure pour atteindre les objectifs",
       "Mise en place de nouvelles habitudes saines et durables",
       "Ebook du sportif avec les informations essentielles et recettes",
       "Échange illimité entre les séances",
-      "Des conseils adaptés en fonction du type d’activité, de la fréquence et des objectifs",
+      "Des conseils adaptés en fonction du type d'activité, de la fréquence et des objectifs",
     ],
   },
   "a-la-carte": {
@@ -291,560 +217,407 @@ const programs = reactive({
       "Questionnaire de rencontre",
       "Réponse aux différents besoins",
       "Fiches outils",
-      "Des conseils personnalisés"
+      "Des conseils personnalisés",
     ],
   },
 });
 
-const mailtoLink = "mailto:lemensmarine12@gmail.com?subject=Demande%20d%27infos%20-%20Belly%20LŌGE";
-
-const wrapper = ref(null);
-const currentIndex = ref(0);
-
-function updateIndex() {
-  if (wrapper.value) {
-    currentIndex.value = Math.round(wrapper.value.scrollLeft / window.innerWidth);
-  }
-}
-
-function goToProgram(key) {
-  selected.value = key;
-  page.value = "details";
-}
-function goHome() {
-  page.value = "home";
-  currentIndex.value = 0;
-
-  nextTick(() => {
-    if (wrapper.value) {
-      wrapper.value.scrollTo({ left: 0, behavior: "auto" });
-    }
-    wrapper.value.addEventListener("scroll", updateIndex);
-  });
-}
-
-onUnmounted(() => {
-  document.title = "Belly LŌGE";
-  window.removeEventListener("wheel", handleWheel);
-});
-
-
-watch(page, (newPage) => {
-  if (selected) {
-    if (selected.value === 'impact') {
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }
-    if (selected.value === 'preconception') {
-      window.scrollTo({ top: 400, behavior: "auto" });
-    }
-    if (selected.value === 'sportif') {
-      window.scrollTo({ top: 800, behavior: "auto" });
-    }
-    if (selected.value === 'a-la-carte') {
-      window.scrollTo({ top: 1200, behavior: "auto" });
-    }
-  }
-});
+const testimonials = [
+  {
+    quote: "On voulait mettre toutes les chances de notre côté avant de concevoir notre bébé, et on a bien fait de venir voir Marine. Elle nous a aidés à mieux comprendre l'impact de l'alimentation et de l'environnement sur la fertilité, mais aussi sur la santé future de notre enfant. On a changé beaucoup de choses, en douceur, et aujourd'hui on se sent vraiment prêts. Merci pour ton écoute et ton accompagnement très humain.",
+    author: "Hélène et Jérem",
+  },
+  {
+    quote: "Grâce au suivi de Marine, j'ai enfin trouvé un équilibre alimentaire qui me correspond vraiment. J'ai gagné en énergie, j'ai perdu de la masse grasse sans sacrifier mes performances, et surtout, je récupère beaucoup mieux. Elle a su adapter ses conseils à ma charge d'entraînement et à mes objectifs. Je recommande à 100 %.",
+    author: "Clément L.",
+  },
+  {
+    quote: "Ce que je retiens de ce suivi, c'est bien plus qu'un changement physique. J'ai appris à écouter mon corps, à comprendre mes besoins, et à faire la paix avec mon alimentation. Marine m'a donné des clés concrètes, sans jamais me faire culpabiliser. Aujourd'hui, je me sens beaucoup plus sereine, dans mon assiette comme dans ma tête.",
+    author: "Julie T.",
+  },
+  {
+    quote: "Pendant ma grossesse, je voulais être sûre de bien faire, sans tomber dans l'excès. J'ai adapté mon alimentation, mieux choisi mes compléments, et compris l'impact de tout cela sur mon bébé… et même sur l'accouchement !! Un vrai soulagement de se sentir accompagnée avec bienveillance.",
+    author: "Sophia L.",
+  },
+  {
+    quote: "On peut dire que je m'y perdais complètement entre tous ces compléments, les conseils contradictoires, etc. Merci d'avoir su m'expliquer simplement ce qui était pertinent pour moi, et ce qui ne l'était pas. On avance bien aussi dans la prise de muscle + 1,5k tout en ayant l'air plus sec! Merci Marine!",
+    author: "Raphaël M.",
+  },
+];
 </script>
 
 <style scoped>
-/* HERO */
-html, body, #app {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-body {
-  overflow: hidden;
+/* ── Design tokens ──────────────────────────────────────────────── */
+.app {
+  --green:     #2b5d4d;
+  --cream:     #F5EBE9;
+  --warm-bg:   #FFF9F5;
+  --border:    #e8e0dc;
+  --text:      #1a1a1a;
+  --muted:     #666;
+  --shadow:    0 4px 16px rgba(0, 0, 0, 0.08);
+  --radius:    10px;
+
+  min-height: 100vh;
+  background: var(--warm-bg);
+  color: var(--text);
 }
 
-.hero-wrapper {
-  display: flex;
-  overflow-x: hidden; /* no ugly scrollbar */
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-}
-
+/* ── Hero ──────────────────────────────────────────────────────── */
 .hero {
-  min-width: 100%;
   height: 100vh;
   position: relative;
-  scroll-snap-align: start;
   background-size: cover;
   background-position: center;
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: white;
 }
 
-.overlay {
+.hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.42);
 }
 
 .hero-content {
   position: relative;
-  top: 40%;
-  transform: translateY(-40%);
+  z-index: 1;
 }
-.hero h1 {
+
+.hero-content h1 {
   font-style: italic;
   font-family: fangsong;
-  font-size: 60px;
-  margin: 0;
+  font-size: clamp(40px, 8vw, 72px);
+  letter-spacing: 4px;
+  margin: 0 0 16px;
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translate(-50%, 0);
-  }
-  50% {
-    transform: translate(-50%, -10px);
-  }
+.hero-tagline {
+  font-size: clamp(14px, 2vw, 18px);
+  font-style: italic;
+  opacity: 0.85;
+  margin: 0 0 32px;
+  letter-spacing: 1px;
 }
 
-.container {
-  width: 100%;
-  margin: auto;
+.hero-cta {
+  display: inline-block;
+  padding: 14px 36px;
+  background: white;
+  color: var(--green);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
-/* PROGRAMS */
-.programs-strip {
-  padding-left: 10%;
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  margin-bottom: 50px;
-}
-.prog-card {
-  width: 350px;
-  height: 140px;
-  border-radius: 12px;
-  position: relative;
+.hero-cta:hover {
+  background: var(--green);
   color: white;
+  transform: scale(1.04);
+}
+
+/* ── Programme cards ───────────────────────────────────────────── */
+.programs-section {
+  padding: 60px 10% 40px;
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.prog-card {
+  height: 200px;
+  border-radius: var(--radius);
+  position: relative;
   cursor: pointer;
   display: flex;
   align-items: flex-end;
-  padding: 15px;
+  padding: 18px;
   background-size: cover;
   background-position: center;
-  transition: transform 0.3s ease;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .prog-card:hover {
-  transform: scale(1.10);
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
-.prog-impact {
-  background-image: url('/impact.jpeg');
-}
-.prog-preco {
-  background-image: url('/preconception.jpeg');
-}
-.prog-sport {
-  background-image: url('/sportif.jpeg');}
-.prog-other {
-  background-image: url('/a-la-carte.jpeg');}
-.overlay-card {
+
+.prog-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 12px;
-}
-.meta {
-  position: relative;
-  z-index: 2;
+  background: rgba(0, 0, 0, 0.38);
+  border-radius: var(--radius);
 }
 
-.styled-list li {
-  margin: 6px 0;
-  padding-left: 20px;
+.prog-meta {
   position: relative;
-}
-.styled-list li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: #2b5d4d;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-/* BOXES */
-.bio,
-.testimonials{
-  transition: transform 0.3s, color 0.3s;
+.prog-meta strong { font-size: 16px; }
+.prog-meta span   { font-size: 13px; opacity: 0.9; }
+
+.prog-impact { background-image: url('/impact.jpeg'); }
+.prog-preco  { background-image: url('/preconception.jpeg'); }
+.prog-sport  { background-image: url('/sportif.jpeg'); }
+.prog-other  { background-image: url('/a-la-carte.jpeg'); }
+
+/* ── Bio & Testimonials cards ──────────────────────────────────── */
+.content-section {
+  padding: 0 10% 40px;
+}
+
+.card {
   background: white;
-  margin: 20px 15%;
-  border: 1px solid lightgray;
-  border-radius: 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 40px;
+  box-shadow: var(--shadow);
 }
-.bio,
-.testimonials{
-  background-color: #FFF9F5;
-  padding: 15px 30px;
+
+.card h2 {
+  font-size: 20px;
+  color: var(--green);
+  margin: 0 0 20px;
 }
-button:hover{
-  cursor: pointer;
+
+.section-label {
+  font-size: 18px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin: 0 0 24px;
 }
-/* BUTTONS */
-button {
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
+
+.card p {
+  line-height: 1.75;
+  color: #444;
+  margin: 0 0 14px;
 }
+
+.card p:last-child { margin-bottom: 0; }
+
 blockquote {
-  margin: 12px 0;
-  padding-left: 20px;
-  border-left: 4px solid #2b5d4d;
+  margin: 0 0 16px;
+  padding: 16px 20px;
+  background: var(--warm-bg);
+  border-left: 3px solid var(--green);
+  border-radius: 0 var(--radius) var(--radius) 0;
   font-style: italic;
+  color: #444;
 }
+
+blockquote:last-child { margin-bottom: 0; }
+
 cite {
   display: block;
-  margin-top: 4px;
-  font-size: 0.9em;
-  color: #333;
-}
-.contact {
-  padding-top: 20px;
-  padding-bottom: 30px;
-  background-color: lightgrey;
-  color: white;
-}
-.contact-title {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  justify-content: center;
-  align-items: center;
-}
-.contact-list {
-  display: flex;
-  flex-direction: row;      /* desktop: in a row */
-  gap: 20px;                /* spacing between links */
-  flex-wrap: wrap;           /* wrap if needed */
-  justify-content: center;   /* center horizontally on desktop */
-  align-items: center;       /* center vertically if needed */
+  margin-top: 8px;
+  font-size: 0.875em;
+  font-style: normal;
+  color: var(--muted);
 }
 
-
-.contact-list a {
-  color: grey;
-  text-decoration: none;
-  font-size: 28px;          /* make icons large enough */
-  transition: transform 0.2s, color 0.3s;
-}
-
-.contact-list a:hover {
-  color: black;             /* hover color */
-  transform: scale(1.2);    /* small zoom on hover */
-}
-
-
-.offer-content {
-  width: 120%
-}
-
-.offer-img-impact {
-  width: 70%;
-  height: 500px; /* or your preferred block height */
-  background-repeat: no-repeat;
-  background-size: 100% 100%; /* fills the entire div exactly */
-  background-position: right center; /* 👈 align image fully to the right */
-  background-color: #F5EBE9;
-}
-.offer-img-preconception {
-  width: 60%;
-  height: 500px; /* or your preferred block height */
-  background-repeat: no-repeat;
-  background-size: 100% 100%; /* fills the entire div exactly */
-  background-position: right center; /* 👈 align image fully to the right */
-  background-color: #F5EBE9;
-}
-.offer-img-sportif {
-  width: 60%;
-  height: 500px; /* or your preferred block height */
-  background-repeat: no-repeat;
-  background-size: 100% 100%; /* fills the entire div exactly */
-  background-position: right center; /* 👈 align image fully to the right */
-  background-color: #F5EBE9;
-}
-.offer-img-a-la-carte {
-  width: 65%;
-  height: 500px; /* or your preferred block height */
-  background-repeat: no-repeat;
-  background-size: 100% 100%; /* fills the entire div exactly */
-  background-position: right center; /* 👈 align image fully to the right */
-  background-color: #F5EBE9;
-}
-
-.offers-section {
-  width: 80%;
+/* ── Details page ──────────────────────────────────────────────── */
+.details-page {
+  min-height: 100vh;
   background: linear-gradient(135deg, #f9fafc, #eef1f6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-y: auto;
-  padding-top: 10px;
-  color: white;
-}
-
-.offers-container {
-  display: grid;
-  grid-template-columns: auto;
-  gap: 20px;
-  max-width: 1200px;
-  width: 100%;
-  overflow: hidden;
-  padding-top: 10px;
-  padding-right: 10%;
-}
-
-/* Card */
-.offer-card {
-  display: flex;
-  justify-content: center;
-  border: 1px solid lightgray;
-  border-radius: 6px;
-  font-weight: bold;
-  margin-bottom: 100px;
-}
-
-
-.offer-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-}
-
-/* Tag */
-.offer-tag {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: #e5ecff;
-  color: #2f46ff;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 999px;
-}
-
-/* Title */
-.offer-title {
-  padding-left: 10%;
-  font-size: 27px;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 10px;
-  justify-content: center;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word; /* optional, aggressive breaking */
-}
-
-/* Price */
-.offer-price {
-  padding-left: 10%;
-}
-
-.current-price {
-  font-size: 32px;
-  font-weight: 800;
-  color: #000000;
-}
-
-.current-price-info {
-  font-size: 32px;
-  font-weight: 800;
-  color: #000000;
-  margin-top: 10px;
-}
-
-.old-price {
-  font-size: 16px;
-  color: #999;
-  text-decoration: line-through;
-  margin-left: 8px;
-}
-
-/* Tagline */
-.offer-tagline {
-  font-size: 14px;
-  color: #555;padding-left: 10%;
-  margin-bottom: 20px;
-}
-
-.offer-features-box {
-  width:100%;
-}
-.offer-features {
-  position: relative;;
-  list-style: none;
-  padding: 0;
-  margin: 0 0 30px 0;
-  width: 100%;
-}
-
-.offer-features li {
-  width: 100%;
-  margin-left: 5%;
-  height: 10%;
-  font-size: 16px;
-  color: #444;
-  padding: 15px 0;
-  text-align: left;
-}
-
-.offer-features-img img {
-  width: 300px;
-}
-
-/* Button */
-.offer-button {
-  background: #2f46ff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 20px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-left: 20%;
-  width: 20%;
-  transition: background 0.3s ease;
-}
-
-.offer-button:hover {
-  background: #1f34d1;
+  padding-bottom: 40px;
 }
 
 .back-button {
-  margin-top: 3%;
-  margin-left: 2%;
-  align-self: flex-start;
+  display: inline-block;
+  margin: 28px 0 20px 5%;
   background: none;
   border: none;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  margin-bottom: 30px;
-  transition: color 0.3s ease;
+  color: var(--text);
+  transition: color 0.2s;
 }
 
-.back-button:hover {
-  color: #4a4848;
+.back-button:hover { color: var(--green); }
+
+.offers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 5%;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-@media (min-width: 800px) {
-  .offers-section {
-    padding-left: 10%;
-  }
+.offer-card {
+  display: flex;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-@media (max-width: 650px) {
-  .offers-section {
-    width: 90%;
-  }
+.offer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-@media (max-width: 400px) {
-  .offer-card {
-    margin-left: 5%;
-  }
+.services-card { background-color: #edf5f0; }
+
+.offer-body {
+  flex: 1;
+  padding: 36px 40px;
+  min-width: 0;
 }
 
-@media (max-width: 800px) {
-  .offer-card {
-    width: 80%;
-  }
-  .offer-card:nth-child(1) {
-    display: grid;
-  }
-  .offer-card:nth-child(2) {
-    display: inline;
-  }
-  .offer-card:nth-child(3) {
-    display: inline;
-  }
-  .offer-card:nth-child(4) {
-    display: inline;
-  }
-
-  .offer-img-impact {
-    width: 100%;
-    height: 350px; /* or your preferred block height */
-    background-repeat: no-repeat;
-    background-size: 100% 100%; /* fills the entire div exactly */
-    background-position: center; /* 👈 align image fully to the right */
-    background-color: #F5EBE9;
-  }
-  .offer-img-preconception {
-    width: 100%;
-    height: 350px; /* or your preferred block height */
-    background-repeat: no-repeat;
-    background-size: 100% 100%; /* fills the entire div exactly */
-    background-position: center; /* 👈 align image fully to the right */
-    background-color: #F5EBE9;
-  }
-  .offer-img-sportif {
-    width: 100%;
-    height: 350px; /* or your preferred block height */
-    background-repeat: no-repeat;
-    background-size: 100% 100%; /* fills the entire div exactly */
-    background-position: center; /* 👈 align image fully to the right */
-    background-color: #F5EBE9;
-  }
-  .offer-img-a-la-carte {
-    width: 100%;
-    height: 350px; /* or your preferred block height */
-    background-repeat: no-repeat;
-    background-size: 100% 100%; /* fills the entire div exactly */
-    background-position: center; /* 👈 align image fully to the right */
-    background-color: #F5EBE9;
-  }
-
-  .offer-content {
-    width: 100%;
-  }
-
+.offer-img {
+  width: 40%;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--cream);
+  min-height: 300px;
 }
 
-@media (max-width: 765px) {
-  .bio,
-  .testimonials {
-    margin: 20px 5%;
-  }
+.offer-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 12px;
+  word-break: break-word;
 }
 
-@media (min-width: 600px) and (max-width: 800px) {
-  .offer-card {
-    margin-left: 25%;
-    width: 370px;
-  }
+.offer-price { margin-bottom: 8px; }
+
+.price-main {
+  font-size: 30px;
+  font-weight: 800;
 }
 
-@media (min-width: 550px) and (max-width: 600px) {
-  .offer-card {
-    margin-left: 25%;
-    width: 370px;
-  }
+.price-sub {
+  display: block;
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 4px;
 }
 
-@media (max-width: 550px) {
-  .offer-card {
-    margin-left: 20%;
-  }
+.offer-tagline {
+  font-size: 14px;
+  color: var(--muted);
+}
 
-  .offer-title {
-    width: 90%;
-  }
+.offer-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-  .offer-tagline {
-    width: 90%;
-    padding-left: 5%;
-  }
+.offer-features li {
+  position: relative;
+  padding: 10px 0 10px 28px;
+  font-size: 15px;
+  color: #444;
+  border-bottom: 1px solid var(--border);
+}
+
+.offer-features li:last-child { border-bottom: none; }
+
+.offer-cta {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 28px;
+  background: var(--green);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.offer-cta:hover {
+  background: #1e4035;
+  transform: scale(1.03);
+}
+
+.offer-features li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  font-size: 12px;
+  color: var(--green);
+}
+
+/* ── Contact footer ────────────────────────────────────────────── */
+.contact {
+  padding: 28px 0 32px;
+  background: #1e4035;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 16px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.contact-links a {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 26px;
+  text-decoration: none;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.contact-links a:hover {
+  color: white;
+  transform: scale(1.2);
+}
+
+/* ── Page transition ───────────────────────────────────────────── */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .programs-section { padding: 40px 5% 30px; }
+  .programs-grid    { grid-template-columns: 1fr; }
+  .content-section  { padding: 0 5% 30px; }
+  .card             { padding: 24px 20px; }
+  .offer-card       { flex-direction: column; }
+  .offer-img        { width: 100%; min-height: 220px; }
+  .offer-body       { padding: 24px 20px; }
 }
 </style>
