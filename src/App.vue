@@ -140,6 +140,7 @@
                 </div>
 
                 <p class="offer-tagline">{{ offer.tagline }}</p>
+                <p class="offer-tagline" v-if="offer.taglineExtra">{{ offer.taglineExtra }}</p>
 
                 <div class="offer-features-box">
                   <ul class="offer-features">
@@ -243,8 +244,7 @@ const contentSection = ref(null);
 const programs = reactive({
   impact: {
     title: "Programme IMPACT",
-    price: "250€ (au lieu de 280€)",
-    old: "280€",
+    price: "299€",
     tagline: "3 mois · 6 séances — équilibre, santé & énergie",
     items: [
       "Questionnaire de Pré-rencontre",
@@ -270,8 +270,7 @@ const programs = reactive({
   },
   sportif: {
     title: "Programme SPORTIF",
-    price: "250€ (au lieu de 280€)",
-    old: "280€",
+    price: "299€",
     tagline: "3 mois · 6 séances — adapté à l’entraînement",
     items: [
       "Questionnaire de pré-rencontre",
@@ -286,8 +285,8 @@ const programs = reactive({
     title: "À la demande",
     price: "55€",
     price_info: "1 séance - sur mesure",
-    tagline: "Première rencontre 45min 80€\n" +
-        "Séance de suivis 30min 40€",
+    tagline: "Première rencontre 45min 80€",
+    taglineExtra: "Séance de suivis 30min 40€",
     items: [
       "Questionnaire de rencontre",
       "Réponse aux différents besoins",
